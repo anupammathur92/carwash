@@ -1,0 +1,84 @@
+.small-box {
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+.bg-aqua{
+	background-color: #00c0ef;
+	 color: #fff;
+}
+.small-box > .inner {
+    padding: 20px;
+}
+.icon {
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 90px;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    transition: all 0.3s linear 0s;
+    z-index: 0;
+}
+.ion-bag::before {
+    content: "";
+}
+.small-box > .small-box-footer {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    border: 1px solid #00c0ef;
+    color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 49.3%;
+    z-index: 10;
+}
+.small-box h3 {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 0 0 10px;
+    padding: 0;
+    white-space: nowrap;
+}
+.small-box h3, .small-box p {
+    z-index: 5;
+}
+.small-box p {
+    font-size: 12px;
+}
+.icon {
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 90px;
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    transition: all 0.3s linear 0s;
+    z-index: 0;
+}
+@media only screen and (max-width: 500px){
+	.small-box {
+    text-align: center;
+}
+.small-box .icon {
+    display: none;
+}
+.small-box > .small-box-footer {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    border: 1px solid #00c0ef;
+    color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    z-index: 10;
+}
+}
