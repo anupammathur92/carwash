@@ -6,13 +6,13 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">List Customer
+							<li class="active">List Category
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
-							<h1>Customer List</h1>
+							<h1>Category List</h1>
 						</div>
 <?php
 $client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
@@ -23,9 +23,9 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 									<div class="col-xs-12">
 										<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 											<div class="row">
-												<form method="GET" action="<?php echo base_url();?>Customer/list_customer">
+												<form method="GET" action="<?php echo base_url();?>Category/list_category">
 													<div class="col-xs-1">
-														<label>Customer </label>
+														<label>Category </label>
 													</div>
 													<div class="col-md-6">
 														<select style="width:100%;" name="client_name" aria-controls="dynamic-table" class="form-control allClientList">
@@ -50,48 +50,37 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 													</div> -->
 													<div class="col-xs-3">
 														<input type="submit" class="btn btn-primary form-control input-sm" placeholder="" aria-controls="dynamic-table" value="Search">
-														<a href="<?php echo base_url();?>Client/list_client" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
+														<a href="<?php echo base_url();?>Servicecategory/list_category" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
 													</div>
 												</form>
 											</div>
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
 												<thead>
 													<tr>
-														<th>Name</th>
-														<th>Email</th>
-														<th>Mobile Number</th>
+														<th>Category Name</th>
+														<th>Parent Category</th>
 														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 												<?php
-												foreach($list_customers as $customer)
+												foreach($list_category as $category)
 												{
 													?>
 													<tr>
-														<td><?php echo $customer["name"]; ?></td>
-														<td><?php echo $customer["email"]; ?></td>
-														<td><?php echo $customer["mobile_number"]; ?></td>
+														<td><?php echo $category["category_name"]; ?></td>
+														<td><?php if($category["parent_id"]!=0){ $parent_cat_data = $this->Servicecategory_model->get_category_by_id($category["parent_id"]); echo $parent_cat_data["category_name"]; } ?></td>
 														<td>
 															<div class="action-buttons">
-																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $customer["id"];?>');">
+																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $category["id"];?>');">
 																	<i class="ace-icon fa fa-info bigger-130"></i>
 																</a>
-																<a class="green" href="<?php echo base_url()."Customer/edit_customer/".$customer["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Servicecategory/edit_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a class="red" href="<?php echo base_url()."Customer/delete_customer/".$customer["id"]; ?>">
+																<a class="red" href="<?php echo base_url()."Servicecategory/delete_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
-																<!-- <a class="blue" title="Print" target="_blank" href="javascript:void(0);" onclick="getCardDetails('<?php echo $client['id'];?>');">
-																	<i class="ace-icon fa fa-print bigger-130"></i>
-																</a> -->
-																<!-- <a class="blue" title="Print" target="_blank" href="<?php echo base_url()."Client/print_monthly_card/".$client["id"]; ?>">
-																	<i class="ace-icon fa fa-print bigger-130"></i>
-																</a> -->
-																<!-- <a class="blue" title="Inventory Details" href="<?php echo base_url()."Client/get_inventory_details?client_id=".$client["id"]."&from_date=".date("01-m-Y")."&to_date=".date("d-m-Y"); ?>">
-																	<i class="ace-icon fa fa-building bigger-130"></i>
-																</a> -->
 															</div>
 														</td>
 													</tr>	
@@ -103,7 +92,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 										</div>
 									</div><!-- /.span -->
                                  <?php
-                                   if (count($list_customers)> 0) {
+                                   if (count($list_category)> 0) {
                                  ?>
           <div class="row">
             <div class="col-xs-6">

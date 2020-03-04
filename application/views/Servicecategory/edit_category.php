@@ -6,14 +6,14 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">Add Service Category
+							<li class="active">Edit Category
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Add Service Category
+								Edit Category
 							</h1>
 						</div><!-- /.page-header -->
 
@@ -22,11 +22,12 @@
 							</div>
 						</div>
 						<?php echo validation_errors(); ?>
-						<form class="form-horizontal" role="form" action="<?php echo base_url();?>Servicecategory/add_servicecategory" method="POST">
+						<form class="form-horizontal" role="form" action="<?php echo base_url();?>Servicecategory/update_category" method="POST">
+						<input type="hidden" name="update_id" value="<?php echo $category_data["id"]; ?>">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Category Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="category_name" placeholder="Category Name" value="<?php echo set_value('category_name'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="category_name" placeholder="Category Name" value="<?php if(isset($category_data)){ echo $category_data["category_name"]; } ?>" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -38,7 +39,7 @@
 								foreach($parent_categories as $parent_category)
 								{
 									?>
-									<option value="<?php echo $parent_category["id"]; ?>" <?php echo set_select("parent_id",$parent_category["id"]); ?> ><?php echo $parent_category["category_name"]; ?></option>
+									<option value="<?php echo $parent_category["id"]; ?>" <?php if(isset($category_data) && $category_data["parent_id"]==$parent_category["id"]){ echo "selected"; } ?> ><?php echo $parent_category["category_name"]; ?></option>
 									<?php
 								}
 								?>

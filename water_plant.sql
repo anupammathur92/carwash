@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2018 at 02:28 PM
--- Server version: 5.5.39
--- PHP Version: 5.4.31
+-- Generation Time: Mar 04, 2020 at 07:10 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,11 +23,38 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admins`
+--
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `mobile_number` varchar(20) NOT NULL,
+  `is_active` int(11) NOT NULL DEFAULT '0',
+  `allow_customer` int(11) NOT NULL DEFAULT '0',
+  `allow_partner` int(11) NOT NULL DEFAULT '0',
+  `allow_brand` int(11) NOT NULL DEFAULT '0',
+  `allow_category` int(11) NOT NULL DEFAULT '0',
+  `user_type` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `mobile_number`, `is_active`, `allow_customer`, `allow_partner`, `allow_brand`, `allow_category`, `user_type`) VALUES
+(1, 'asdfg', 'a@gmail.com', '1234567890', 1, 0, 1, 1, 1, 'subadmin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bills`
 --
 
 CREATE TABLE IF NOT EXISTS `bills` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `from_date` varchar(250) NOT NULL,
   `to_date` varchar(250) NOT NULL,
@@ -38,7 +65,8 @@ CREATE TABLE IF NOT EXISTS `bills` (
   `extra_campers` int(11) NOT NULL DEFAULT '0',
   `total_amount_extra` varchar(250) NOT NULL,
   `created_on` varchar(250) NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
@@ -60,11 +88,56 @@ INSERT INTO `bills` (`id`, `client_id`, `from_date`, `to_date`, `total_campers`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `brand`
+--
+
+CREATE TABLE IF NOT EXISTS `brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `model` varchar(50) NOT NULL,
+  `logo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `brand`
+--
+
+INSERT INTO `brand` (`id`, `name`, `model`, `logo`) VALUES
+(1, 'a', 'a', ''),
+(3, 'b', 'b', ''),
+(4, 'c', 'c', ''),
+(5, 'd', 'd', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(50) NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`id`, `category_name`, `parent_id`) VALUES
+(2, 'qwerty', 0),
+(3, 'helloa', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `clients`
 --
 
 CREATE TABLE IF NOT EXISTS `clients` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_name` varchar(250) NOT NULL,
   `client_address` text NOT NULL,
   `client_contact_no` varchar(250) NOT NULL,
@@ -74,7 +147,8 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `security_returned` int(11) NOT NULL,
   `start_date` varchar(250) DEFAULT NULL,
   `created_on` varchar(250) NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 
 --
@@ -241,18 +315,44 @@ INSERT INTO `clients` (`id`, `client_name`, `client_address`, `client_contact_no
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer_partner`
+--
+
+CREATE TABLE IF NOT EXISTS `customer_partner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `mobile_number` varchar(50) NOT NULL,
+  `is_active` int(11) NOT NULL DEFAULT '0',
+  `user_type` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `customer_partner`
+--
+
+INSERT INTO `customer_partner` (`id`, `name`, `email`, `mobile_number`, `is_active`, `user_type`) VALUES
+(2, 'a', 'a@gmail.com..', '978654213', 1, 'customer'),
+(3, 'qwerty', 'a@gmail.com', '1234567890', 0, 'partner'),
+(4, 'sdasd', 'a@gmail.com', '1234567890', 0, 'customer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `inventory`
 --
 
 CREATE TABLE IF NOT EXISTS `inventory` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `in_quantity` int(11) NOT NULL,
   `out_quantity` int(11) NOT NULL,
   `date_time` varchar(250) NOT NULL,
   `is_billed` int(11) NOT NULL,
   `created_on` varchar(250) NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2679 ;
 
 --
@@ -2692,47 +2792,6 @@ INSERT INTO `inventory` (`id`, `client_id`, `in_quantity`, `out_quantity`, `date
 (2677, 134, 2, 2, '2018-08-12', 0, '2018-08-31 10:52:22', '2018-08-31 10:52:22'),
 (2678, 134, 2, 2, '2018-08-05', 0, '2018-08-31 10:52:42', '2018-08-31 10:52:42');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `bills`
---
-ALTER TABLE `bills`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `clients`
---
-ALTER TABLE `clients`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `inventory`
---
-ALTER TABLE `inventory`
- ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `bills`
---
-ALTER TABLE `bills`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `clients`
---
-ALTER TABLE `clients`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=159;
---
--- AUTO_INCREMENT for table `inventory`
---
-ALTER TABLE `inventory`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2679;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

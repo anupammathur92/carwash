@@ -1,19 +1,19 @@
 <?php
-class Partner extends CI_Controller
+class Subadmin extends CI_Controller
 {
 	public function index()
 	{
-		$data["main_content"] = "Partner/add_partner";
+		$data["main_content"] = "Subadmin/add_subadmin";
 		$this->load->view("Admin/template",$data);
 	}
-	public function add_partner()
+	public function add_subadmin()
 	{
 		if($this->input->post())
 		{
-			$this->load->model("Partner_model");
-			$this->Partner_model->add_partner();
+			$this->load->model("Subadmin_model");
+			$this->Subadmin_model->add_subadmin();
 
-			$data["main_content"] = "Partner/add_partner";
+			$data["main_content"] = "Subadmin/add_subadmin";
 			$this->load->view("Admin/template",$data);
 		}
 		else
@@ -21,23 +21,23 @@ class Partner extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function list_partner()
+	public function list_subadmin()
 	{
 		$start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $limit = 10;
 
         $this->load->library("pagination");
-		$this->load->model("Partner_model");
-		$partner_name = $this->input->get("partner_name") ? $this->input->get("partner_name") : "";
-		$data["list_partners"] = $this->Partner_model->list_partner($limit);
+		$this->load->model("Subadmin_model");
+		$subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmin_name") : "";
+		$data["list_subadmins"] = $this->Subadmin_model->list_subadmin($limit);
 
-		$config["base_url"] = base_url()."Partner/list_partner";
-        $config["total_rows"] = $this->Partner_model->count_partner($partner_name);
+		$config["base_url"] = base_url()."Subadmin/list_subadmin";
+        $config["total_rows"] = $this->Subadmin_model->count_subadmin($subadmin_name);
         $config["per_page"] = $limit;
 		
-		$config["first_url"] = base_url()."Partner/list_partner?partner_name=" . $partner_name;
+		$config["first_url"] = base_url()."Subadmin/list_subadmin?subadmin_name=" . $subadmin_name;
 
-		$config["suffix"] = "?partner_name=" . $partner_name;
+		$config["suffix"] = "?subadmin_name=" . $subadmin_name;
 
 		$data["page_url"] = $start.$config["suffix"];
 		$config["uri_segment"] = 3;
@@ -45,16 +45,16 @@ class Partner extends CI_Controller
 		$data["config"] = $config;
 
 
-		$data["main_content"] = "Partner/list_partner";
+		$data["main_content"] = "Subadmin/list_subadmin";
 		$this->load->view("Admin/template",$data);
 	}
-	public function edit_partner($partner_id = FALSE)
+	public function edit_subadmin($subadmin_id = FALSE)
 	{
-		if($partner_id)
+		if($subadmin_id)
 		{
-			$this->load->model("Partner_model");
-			$data["partner_data"] = $this->Partner_model->get_partner_by_id($partner_id);
-			$data["main_content"] = "Partner/edit_partner";
+			$this->load->model("Subadmin_model");
+			$data["subadmin_data"] = $this->Subadmin_model->get_subadmin_by_id($subadmin_id);
+			$data["main_content"] = "Subadmin/edit_subadmin";
 			$this->load->view("Admin/template",$data);
 		}
 		else
@@ -62,14 +62,14 @@ class Partner extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function update_partner()
+	public function update_subadmin()
 	{
 		if($this->input->post())
 		{
-			$this->load->model("Partner_model");
-			$data["partner_data"] = $this->Partner_model->update_partner();
+			$this->load->model("Subadmin_model");
+			$data["subadmin_data"] = $this->Subadmin_model->update_subadmin();
 
-			$data["main_content"] = "Partner/edit_partner";
+			$data["main_content"] = "Subadmin/edit_subadmin";
 			$this->load->view("Admin/template",$data);
 		}
 		else
@@ -94,12 +94,12 @@ class Partner extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function delete_partner($partner_id = FALSE)
+	public function delete_subadmin($subadmin_id = FALSE)
 	{
-		if($partner_id)
+		if($subadmin_id)
 		{
-			$this->load->model("Partner_model");
-			$this->Partner_model->delete_partner($partner_id);
+			$this->load->model("Subadmin_model");
+			$this->Subadmin_model->delete_subadmin($subadmin_id);
 		}
 		else
 		{

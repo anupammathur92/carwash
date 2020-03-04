@@ -12,7 +12,7 @@ class Customer_model extends CI_Model
 		if($this->form_validation->run())
 		{
 			$values = $this->input->post();
-			$values['is_active'] = 0;
+			
 			$values['user_type'] = 'customer';
 			$this->db->insert("customer_partner",$values);
 
@@ -64,9 +64,15 @@ class Customer_model extends CI_Model
 
 		if($this->form_validation->run())
 		{
+			
 			$values = $this->input->post();
 			$update_id = $values["update_id"];
 			unset($values["update_id"]);
+
+			if(!isset($values["is_active"]))
+			{
+				$values['is_active'] = 0;
+			}
 
 			//values["date_time"] = date("Y-m-d",strtotime($values["date_time"]));
 

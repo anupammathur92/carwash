@@ -23,9 +23,27 @@ class Customer extends CI_Controller
 	}
 	public function list_customer()
 	{
-		$limit = 10;
+		$start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $limit = 10;
+
+        $this->load->library("pagination");
 		$this->load->model("Customer_model");
+		$customer_name = $this->input->get("customer_name") ? $this->input->get("customer_name") : "";
 		$data["list_customers"] = $this->Customer_model->list_customer($limit);
+
+		$config["base_url"] = base_url()."Customer/list_customer";
+        $config["total_rows"] = $this->Customer_model->count_customer($customer_name);
+        $config["per_page"] = $limit;
+		
+		$config["first_url"] = base_url()."Customer/list_customer?customer_name=" . $customer_name;
+
+		$config["suffix"] = "?customer_name=" . $customer_name;
+
+		$data["page_url"] = $start.$config["suffix"];
+		$config["uri_segment"] = 3;
+		$this->pagination->initialize($config);
+		$data["config"] = $config;
+
 		$data["main_content"] = "Customer/list_customer";
 		$this->load->view("Admin/template",$data);
 	}

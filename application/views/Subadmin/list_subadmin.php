@@ -6,16 +6,16 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">List Customer
+							<li class="active">List Subadmin
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
-							<h1>Customer List</h1>
+							<h1>Partner List</h1>
 						</div>
 <?php
-$client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
+$subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmin_name") : "";
 ?>
 						<div class="row">
 							<div class="col-xs-12">
@@ -23,9 +23,9 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 									<div class="col-xs-12">
 										<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 											<div class="row">
-												<form method="GET" action="<?php echo base_url();?>Customer/list_customer">
+												<form method="GET" action="<?php echo base_url();?>Subadmin/list_subadmin">
 													<div class="col-xs-1">
-														<label>Customer </label>
+														<label>Subadmin </label>
 													</div>
 													<div class="col-md-6">
 														<select style="width:100%;" name="client_name" aria-controls="dynamic-table" class="form-control allClientList">
@@ -50,7 +50,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 													</div> -->
 													<div class="col-xs-3">
 														<input type="submit" class="btn btn-primary form-control input-sm" placeholder="" aria-controls="dynamic-table" value="Search">
-														<a href="<?php echo base_url();?>Client/list_client" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
+														<a href="<?php echo base_url();?>Subadmin/list_subadmin" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
 													</div>
 												</form>
 											</div>
@@ -65,22 +65,22 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 												</thead>
 												<tbody>
 												<?php
-												foreach($list_customers as $customer)
+												foreach($list_subadmins as $subadmin)
 												{
 													?>
 													<tr>
-														<td><?php echo $customer["name"]; ?></td>
-														<td><?php echo $customer["email"]; ?></td>
-														<td><?php echo $customer["mobile_number"]; ?></td>
+														<td><?php echo $subadmin["name"]; ?></td>
+														<td><?php echo $subadmin["email"]; ?></td>
+														<td><?php echo $subadmin["mobile_number"]; ?></td>
 														<td>
 															<div class="action-buttons">
-																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $customer["id"];?>');">
+																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $subadmin["id"];?>');">
 																	<i class="ace-icon fa fa-info bigger-130"></i>
 																</a>
-																<a class="green" href="<?php echo base_url()."Customer/edit_customer/".$customer["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Subadmin/edit_subadmin/".$subadmin["id"]; ?>">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a class="red" href="<?php echo base_url()."Customer/delete_customer/".$customer["id"]; ?>">
+																<a class="red" href="<?php echo base_url()."Subadmin/delete_subadmin/".$subadmin["id"]; ?>">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 																<!-- <a class="blue" title="Print" target="_blank" href="javascript:void(0);" onclick="getCardDetails('<?php echo $client['id'];?>');">
@@ -103,7 +103,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 										</div>
 									</div><!-- /.span -->
                                  <?php
-                                   if (count($list_customers)> 0) {
+                                   if (count($list_subadmins)> 0) {
                                  ?>
           <div class="row">
             <div class="col-xs-6">

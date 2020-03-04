@@ -38,6 +38,17 @@
 									<input type="text" name="mobile_number" id="form-field-1" placeholder="Mobile Name" value="<?php if(isset($customer_data)){ echo $customer_data['mobile_number']; }?>" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"></label>
+								<div class="col-sm-9">
+									<div class="radio">
+										<label>
+											<input name="is_active" value="1" type="checkbox" class="ace" <?php if(isset($customer_data) && $customer_data["is_active"]==1){ echo "checked"; } ?>>
+											<span class="lbl"> Is Active</span>
+										</label>
+									</div>
+								</div>
+							</div>
 							<div class="clearfix form-actions">
 								<div class="col-md-offset-3 col-md-9">
 									<button class="btn btn-info" type="submit">Update</button>

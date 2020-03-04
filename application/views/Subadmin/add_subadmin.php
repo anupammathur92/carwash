@@ -6,14 +6,14 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">Add Partner
+							<li class="active">Add Subadmin
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								Add Partner
+								Add Subadmin
 							</h1>
 						</div><!-- /.page-header -->
 
@@ -22,11 +22,11 @@
 							</div>
 						</div>
 						<?php echo validation_errors(); ?>
-						<form class="form-horizontal" role="form" action="<?php echo base_url();?>Partner/add_partner" method="POST">
+						<form class="form-horizontal" role="form" action="<?php echo base_url();?>Subadmin/add_subadmin" method="POST">
 							<div class="form-group">
-								<label class="col-sm-3 control-label no-padding-right"> Partner Name </label>
+								<label class="col-sm-3 control-label no-padding-right"> Subadmin Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="name" placeholder="Partner Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="name" placeholder="Subadmin Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							<div class="form-group">
@@ -52,11 +52,40 @@
 									</div>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"></label>
+								<div class="col-sm-9">
+									<div class="radio">
+										<label>
+											<input name="allow_partner" value="1" type="checkbox" class="ace">
+											<span class="lbl">Partner</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input name="allow_customer" value="1" type="checkbox" class="ace">
+											<span class="lbl">Customer</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input name="allow_brand" value="1" type="checkbox" class="ace">
+											<span class="lbl">Brand</span>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input name="allow_category" value="1" type="checkbox" class="ace">
+											<span class="lbl">Category</span>
+										</label>
+									</div>
+								</div>
+							</div>
 							<div class="clearfix form-actions">
 								<div class="col-md-offset-3 col-md-9">
 									<button class="btn btn-info" type="submit">Add</button>
 									&nbsp; &nbsp; &nbsp;
-									<a class="btn" href="<?php echo base_url(); ?>Brand/list_brand">Cancel</a>
+									<a class="btn" href="<?php echo base_url(); ?>Subadmin/list_subadmin">Cancel</a>
 								</div>
 							</div>
 						</form>

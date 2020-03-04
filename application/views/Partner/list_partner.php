@@ -109,7 +109,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
             <div class="col-xs-6">
               <div class="dataTables_info" id="dynamic-table_info" role="status" aria-live="polite">
                   <?php
-                      /*$current = $this->uri->segment(3) + 1;
+                      $current = $this->uri->segment(3) + 1;
                       $to = $this->uri->segment(3) + $config["per_page"];
                       $to = ( $to < $config["total_rows"] ? $to : $config["total_rows"]);
                       $current = (isset($current) ? $current : 0 );
@@ -120,7 +120,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
                       if($this->uri->segment(3))
                           $page_no = (($this->uri->segment(3) + $config["per_page"])/$config["per_page"]);
                       else
-                          $page_no = 1;*/
+                          $page_no = 1;
                   ?>
               </div>
             </div>
@@ -138,7 +138,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
             </div> -->
           </div>
 	        <div class="row pag">
-	            <div class=" col-lg-12 center pagination"><?php //echo $this->pagination->create_links(); ?></div>
+	            <div class=" col-lg-12 center pagination"><?php echo $this->pagination->create_links(); ?></div>
 	        </div>
 	        <?php 
             }
