@@ -39,6 +39,18 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"> Password </label>
+								<div class="col-sm-9">
+									<input type="password" name="password" placeholder="Password" class="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right"> Confirm Password </label>
+								<div class="col-sm-9">
+									<input type="password" name="confirm_password" placeholder="Confirm Password" class="col-xs-10 col-sm-5" />
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"></label>
 								<div class="col-sm-9">
 									<div class="radio">

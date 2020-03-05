@@ -1,7 +1,7 @@
 <?php
-class Servicecategory_model extends CI_Model
+class Category_model extends CI_Model
 {
-	public function add_servicecategory()
+	public function add_category()
 	{
 		//echo "<pre>"; print_r($this->input->post()); echo "</pre>"; die();
 
@@ -15,7 +15,7 @@ class Servicecategory_model extends CI_Model
 
 			$this->session->set_flashdata("insert_success","Category Successfully Added");
 
-			redirect(base_url()."Servicecategory/list_category");
+			redirect(base_url()."Category/list_category");
 		}
 		else
 		{
@@ -43,6 +43,7 @@ class Servicecategory_model extends CI_Model
 	public function list_category($limit = 0,$start = 0,$category_id = FALSE,$from_date = FALSE,$to_date = FALSE)
 	{
 		$this->make_category_query($category_id,$from_date,$to_date);
+		$this->db->where(array("parent_id"=>0));
 		$this->db->order_by("id","DESC");
 
 		if($limit!=-1 AND $limit!=-1)
@@ -72,7 +73,7 @@ class Servicecategory_model extends CI_Model
 			$this->db->where("id",$update_id);
 			$this->db->update("category",$values);
 
-			redirect(base_url()."Servicecategory/list_category");
+			redirect(base_url()."Category/list_category");
 		}
 		else
 		{
@@ -84,7 +85,61 @@ class Servicecategory_model extends CI_Model
 		$this->db->where("id",$category_id);
 		$this->db->delete("category");
 
-		redirect(base_url()."Servicecategory/list_category");
+		redirect(base_url()."Category/list_category");
+	}
+	public function delete_subcategory($subcategory_id)
+	{
+		$sub_category_data = $this->get_category_by_id($subcategory_id);
+		$this->db->where("id",$subcategory_id);
+		$this->db->delete("category");
+
+		redirect(base_url()."Category/subcategory/".$sub_category_data["parent_id"]);
+	}
+	public function add_subcategory()
+	{
+		$this->form_validation->set_rules("category_name","Sub Category Name","required|trim|callback_unique_category_name");
+		$this->form_validation->set_rules("model","trim");
+
+		if($this->form_validation->run())
+		{
+			$values = $this->input->post();
+			$this->db->insert("category",$values);
+
+			$this->session->set_flashdata("insert_success","Category Successfully Added");
+
+			redirect(base_url()."Category/subcategory/".$values["parent_id"]);
+		}
+		else
+		{
+			return validation_errors();
+		}
+	}
+	public function get_subcategory_list($category_id)
+	{
+		return $this->db->get_where("category",array("parent_id"=>$category_id))->result_array();
+	}
+	public function update_subcategory()
+	{
+		$this->form_validation->set_rules("category_name","Sub Category Name","required|trim|callback_unique_category_name");
+		$this->form_validation->set_rules("model","trim");
+
+		if($this->form_validation->run())
+		{
+			$values = $this->input->post();
+			$update_id = $values["update_id"];
+			unset($values["update_id"]);
+
+			//values["date_time"] = date("Y-m-d",strtotime($values["date_time"]));
+
+			$this->db->where("id",$update_id);
+			$this->db->update("category",$values);
+
+			redirect(base_url()."Category/subcategory/".$values["parent_id"]);
+		}
+		else
+		{
+			return $this->get_category_by_id($this->input->post("update_id"));
+		}
 	}
 }
 ?>

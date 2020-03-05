@@ -6,16 +6,16 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">List Subadmin
+							<li class="active">List Category
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
-							<h1>Subadmin List</h1>
+							<h1>Category List</h1>
 						</div>
 <?php
-$subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmin_name") : "";
+$client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
 ?>
 						<div class="row">
 							<div class="col-xs-12">
@@ -23,9 +23,9 @@ $subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmi
 									<div class="col-xs-12">
 										<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 											<div class="row">
-												<form method="GET" action="<?php echo base_url();?>Subadmin/list_subadmin">
+												<form method="GET" action="<?php echo base_url();?>Category/list_category">
 													<div class="col-xs-1">
-														<label>Subadmin </label>
+														<label>Category </label>
 													</div>
 													<div class="col-md-6">
 														<select style="width:100%;" name="client_name" aria-controls="dynamic-table" class="form-control allClientList">
@@ -50,48 +50,38 @@ $subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmi
 													</div> -->
 													<div class="col-xs-3">
 														<input type="submit" class="btn btn-primary form-control input-sm" placeholder="" aria-controls="dynamic-table" value="Search">
-														<a href="<?php echo base_url();?>Subadmin/list_subadmin" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
+														<a href="<?php echo base_url();?>Servicecategory/list_category" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
 													</div>
 												</form>
 											</div>
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
 												<thead>
 													<tr>
-														<th>Name</th>
-														<th>Email</th>
-														<th>Mobile Number</th>
+														<th>Category Name</th>
 														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
 												<?php
-												foreach($list_subadmins as $subadmin)
+												foreach($list_category as $category)
 												{
 													?>
 													<tr>
-														<td><?php echo $subadmin["name"]; ?></td>
-														<td><?php echo $subadmin["email"]; ?></td>
-														<td><?php echo $subadmin["mobile_number"]; ?></td>
+														<td><?php echo $category["category_name"]; ?></td>
 														<td>
 															<div class="action-buttons">
-																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $subadmin["id"];?>');">
+																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $category["id"];?>');">
 																	<i class="ace-icon fa fa-info bigger-130"></i>
 																</a>
-																<a class="green" href="<?php echo base_url()."Subadmin/edit_subadmin/".$subadmin["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Category/edit_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a class="red" href="<?php echo base_url()."Subadmin/delete_subadmin/".$subadmin["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Category/subcategory/".$category["id"]; ?>">
+																	<i class="ace-icon fa fa-pencil bigger-130"></i>
+																</a>
+																<a class="red" href="<?php echo base_url()."Category/delete_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
-																<!-- <a class="blue" title="Print" target="_blank" href="javascript:void(0);" onclick="getCardDetails('<?php echo $client['id'];?>');">
-																	<i class="ace-icon fa fa-print bigger-130"></i>
-																</a> -->
-																<!-- <a class="blue" title="Print" target="_blank" href="<?php echo base_url()."Client/print_monthly_card/".$client["id"]; ?>">
-																	<i class="ace-icon fa fa-print bigger-130"></i>
-																</a> -->
-																<!-- <a class="blue" title="Inventory Details" href="<?php echo base_url()."Client/get_inventory_details?client_id=".$client["id"]."&from_date=".date("01-m-Y")."&to_date=".date("d-m-Y"); ?>">
-																	<i class="ace-icon fa fa-building bigger-130"></i>
-																</a> -->
 															</div>
 														</td>
 													</tr>	
@@ -103,7 +93,7 @@ $subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmi
 										</div>
 									</div><!-- /.span -->
                                  <?php
-                                   if (count($list_subadmins)> 0) {
+                                   if (count($list_category)> 0) {
                                  ?>
           <div class="row">
             <div class="col-xs-6">

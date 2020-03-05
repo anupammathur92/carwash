@@ -6,13 +6,13 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="<?php echo base_url();?>">Home</a>
 							</li>
-							<li class="active">List Category
+							<li class="active">List Sub Category
 							</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
-							<h1>Category List</h1>
+							<h1>Sub Category List</h1>
 						</div>
 <?php
 $client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
@@ -23,7 +23,7 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 									<div class="col-xs-12">
 										<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 											<div class="row">
-												<form method="GET" action="<?php echo base_url();?>Category/list_category">
+												<form method="GET" action="<?php echo base_url();?>Category/list_subcategory">
 													<div class="col-xs-1">
 														<label>Category </label>
 													</div>
@@ -58,7 +58,6 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 												<thead>
 													<tr>
 														<th>Category Name</th>
-														<th>Parent Category</th>
 														<th>Action</th>
 													</tr>
 												</thead>
@@ -69,16 +68,18 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 													?>
 													<tr>
 														<td><?php echo $category["category_name"]; ?></td>
-														<td><?php if($category["parent_id"]!=0){ $parent_cat_data = $this->Servicecategory_model->get_category_by_id($category["parent_id"]); echo $parent_cat_data["category_name"]; } ?></td>
 														<td>
 															<div class="action-buttons">
 																<a class="blue" href="javascript:void(0);" onclick="showClientDetails('<?php echo $category["id"];?>');">
 																	<i class="ace-icon fa fa-info bigger-130"></i>
 																</a>
-																<a class="green" href="<?php echo base_url()."Servicecategory/edit_category/".$category["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Category/edit_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-pencil bigger-130"></i>
 																</a>
-																<a class="red" href="<?php echo base_url()."Servicecategory/delete_category/".$category["id"]; ?>">
+																<a class="green" href="<?php echo base_url()."Category/subcategory/".$category["id"]; ?>">
+																	<i class="ace-icon fa fa-pencil bigger-130"></i>
+																</a>
+																<a class="red" href="<?php echo base_url()."Category/delete_category/".$category["id"]; ?>">
 																	<i class="ace-icon fa fa-trash-o bigger-130"></i>
 																</a>
 															</div>

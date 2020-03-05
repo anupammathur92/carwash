@@ -21,6 +21,24 @@ class Subadmin extends CI_Controller
 			redirect(base_url());
 		}
 	}
+	public function unique_mobile_number($mobile_number)
+	{
+		$this->db->where("mobile_number",$mobile_number);
+
+		if($this->input->post("update_id"))
+			$this->db->where("id !=",$this->input->post("update_id"));
+
+		$query = $this->db->get("admins");
+		if($query->num_rows()>0)
+		{
+			$this->form_validation->set_message("unique_mobile_number","The Mobile Number You Entered , Already Exists. Please Enter A Unique Mobile Number");
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 	public function list_subadmin()
 	{
 		$start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;

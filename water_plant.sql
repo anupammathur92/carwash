@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2020 at 07:10 PM
+-- Generation Time: Mar 05, 2020 at 07:11 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile_number` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `is_active` int(11) NOT NULL DEFAULT '0',
   `allow_customer` int(11) NOT NULL DEFAULT '0',
   `allow_partner` int(11) NOT NULL DEFAULT '0',
@@ -38,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `allow_category` int(11) NOT NULL DEFAULT '0',
   `user_type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `email`, `mobile_number`, `is_active`, `allow_customer`, `allow_partner`, `allow_brand`, `allow_category`, `user_type`) VALUES
-(1, 'asdfg', 'a@gmail.com', '1234567890', 1, 0, 1, 1, 1, 'subadmin');
+INSERT INTO `admins` (`id`, `name`, `email`, `mobile_number`, `password`, `is_active`, `allow_customer`, `allow_partner`, `allow_brand`, `allow_category`, `user_type`) VALUES
+(1, 'asdfg', 'a@gmail.com', '1234567890', '', 1, 0, 1, 1, 1, 'subadmin'),
+(2, 'a', 'a@gmail.com', 'a', '123456', 0, 0, 0, 0, 0, 'subadmin');
 
 -- --------------------------------------------------------
 
@@ -120,15 +122,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `category_name` varchar(50) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`id`, `category_name`, `parent_id`) VALUES
-(2, 'qwerty', 0),
-(3, 'helloa', 2);
+(1, 'a', 0),
+(2, 'b', 0),
+(4, 'f', 2);
 
 -- --------------------------------------------------------
 
@@ -323,6 +326,7 @@ CREATE TABLE IF NOT EXISTS `customer_partner` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile_number` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
   `is_active` int(11) NOT NULL DEFAULT '0',
   `user_type` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
@@ -332,10 +336,10 @@ CREATE TABLE IF NOT EXISTS `customer_partner` (
 -- Dumping data for table `customer_partner`
 --
 
-INSERT INTO `customer_partner` (`id`, `name`, `email`, `mobile_number`, `is_active`, `user_type`) VALUES
-(2, 'a', 'a@gmail.com..', '978654213', 1, 'customer'),
-(3, 'qwerty', 'a@gmail.com', '1234567890', 0, 'partner'),
-(4, 'sdasd', 'a@gmail.com', '1234567890', 0, 'customer');
+INSERT INTO `customer_partner` (`id`, `name`, `email`, `mobile_number`, `password`, `is_active`, `user_type`) VALUES
+(2, 'a', 'a@gmail.com..', '978654213', '', 1, 'customer'),
+(3, 'qwerty', 'a@gmail.com', '1234567890', '', 0, 'partner'),
+(4, 'sdasd', 'a@gmail.com', '1234567890', '', 0, 'customer');
 
 -- --------------------------------------------------------
 

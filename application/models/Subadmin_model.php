@@ -6,13 +6,18 @@ class Subadmin_model extends CI_Model
 		//echo "<pre>"; print_r($this->input->post()); echo "</pre>"; die();
 
 		$this->form_validation->set_rules("name","Subadmin Name","required|trim");
-		$this->form_validation->set_rules("email","trim");
-		$this->form_validation->set_rules("mobile_number","trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("email","Email","required|trim");
+		$this->form_validation->set_rules("mobile_number","Mobile Number","required|trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("password","Password","required|trim");
+		$this->form_validation->set_rules("confirm_password","Confirm Password","required|trim|matches[password]");
 
 		if($this->form_validation->run())
 		{
 			$values = $this->input->post();
 			$values['user_type'] = 'subadmin';
+
+			unset($values["confirm_password"]);
+
 			$this->db->insert("admins",$values);
 
 			$this->session->set_flashdata("insert_success","Subadmin Successfully Added");
@@ -58,14 +63,17 @@ class Subadmin_model extends CI_Model
 	public function update_subadmin()
 	{
 		$this->form_validation->set_rules("name","Subadmin Name","required|trim");
-		$this->form_validation->set_rules("email","trim");
-		$this->form_validation->set_rules("mobile_number","trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("email","Email","required|trim");
+		$this->form_validation->set_rules("mobile_number","Mobile Number","required|trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("password","Password","trim");
+		$this->form_validation->set_rules("confirm_password","Confirm Password","trim|matches[password]");
 
 		if($this->form_validation->run())
 		{
 			$values = $this->input->post();
 			$update_id = $values["update_id"];
 			unset($values["update_id"]);
+			unset($values["confirm_password"]);
 
 			//values["date_time"] = date("Y-m-d",strtotime($values["date_time"]));
 			if(!isset($values["is_active"]))

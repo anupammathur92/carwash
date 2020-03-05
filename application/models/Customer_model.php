@@ -6,8 +6,10 @@ class Customer_model extends CI_Model
 		//echo "<pre>"; print_r($this->input->post()); echo "</pre>"; die();
 
 		$this->form_validation->set_rules("name","Customer Name","required|trim");
-		$this->form_validation->set_rules("email","trim");
-		$this->form_validation->set_rules("mobile_number","trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("email","Email Address","required|trim");
+		$this->form_validation->set_rules("mobile_number","Mobile Number","required|trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("password","Password","required|trim");
+		$this->form_validation->set_rules("confirm_password","Confirm Password","required|trim|matches[password]");
 
 		if($this->form_validation->run())
 		{
@@ -59,8 +61,10 @@ class Customer_model extends CI_Model
 	public function update_customer()
 	{
 		$this->form_validation->set_rules("name","Customer Name","required|trim");
-		$this->form_validation->set_rules("email","trim");
-		$this->form_validation->set_rules("mobile_number","trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("email","Email","required|trim");
+		$this->form_validation->set_rules("mobile_number","Mobile Number","required|trim|callback_unique_mobile_number");
+		$this->form_validation->set_rules("password","Password","trim");
+		$this->form_validation->set_rules("confirm_password","Confirm Password","trim|matches[password]");
 
 		if($this->form_validation->run())
 		{
