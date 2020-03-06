@@ -3,11 +3,19 @@ class Partner extends CI_Controller
 {
 	public function index()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$data["main_content"] = "Partner/add_partner";
 		$this->load->view("Admin/template",$data);
 	}
 	public function add_partner()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($this->input->post())
 		{
 			$this->load->model("Partner_model");
@@ -41,13 +49,17 @@ class Partner extends CI_Controller
 	}
 	public function list_partner()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $limit = 10;
 
         $this->load->library("pagination");
 		$this->load->model("Partner_model");
 		$partner_name = $this->input->get("partner_name") ? $this->input->get("partner_name") : "";
-		$data["list_partners"] = $this->Partner_model->list_partner($limit);
+		$data["list_partners"] = $this->Partner_model->list_partner($limit,$start,$partner_name);
 
 		$config["base_url"] = base_url()."Partner/list_partner";
         $config["total_rows"] = $this->Partner_model->count_partner($partner_name);
@@ -68,6 +80,10 @@ class Partner extends CI_Controller
 	}
 	public function edit_partner($partner_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($partner_id)
 		{
 			$this->load->model("Partner_model");
@@ -82,6 +98,10 @@ class Partner extends CI_Controller
 	}
 	public function update_partner()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($this->input->post())
 		{
 			$this->load->model("Partner_model");
@@ -95,44 +115,16 @@ class Partner extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function show_bill_details()
+	public function delete_partner($partner_id = FALSE)
 	{
-		if($this->input->is_ajax_request())
-		{
-			$bill_id = $this->input->post("bill_id");
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-
-			$this->load->view("Billing/ajax_bill_details",$data);
-		}
-		else
+		if(!$this->session->userdata("logged_in"))
 		{
 			redirect(base_url());
 		}
-	}
-	public function delete_partner($partner_id = FALSE)
-	{
 		if($partner_id)
 		{
 			$this->load->model("Partner_model");
 			$this->Partner_model->delete_partner($partner_id);
-		}
-		else
-		{
-			redirect(base_url());
-		}
-	}
-	public function get_bill($bill_id = FALSE)
-	{
-		if($bill_id)
-		{
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-			$this->load->view("Billing/view_bill",$data);
 		}
 		else
 		{

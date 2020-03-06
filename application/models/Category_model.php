@@ -30,19 +30,14 @@ class Category_model extends CI_Model
 	{
 		return $this->db->get_where("category",array("id"=>$category_id))->row_array();
 	}
-	private function make_category_query($category_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	private function make_category_query($category_name = "")
 	{
-		if($category_id)
-			$this->db->where("id",$category_id);
-
-		if($from_date)
-			$this->db->where("DATE(`date_time`) >=",date("Y-m-d",strtotime($from_date)));
-		if($to_date)
-			$this->db->where("DATE(`date_time`) <=",date("Y-m-d",strtotime($to_date)));
+		if($category_name!="")
+			$this->db->like("category_name",$category_name);
 	}
-	public function list_category($limit = 0,$start = 0,$category_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function list_category($limit = 0,$start = 0,$category_name = "")
 	{
-		$this->make_category_query($category_id,$from_date,$to_date);
+		$this->make_category_query($category_name);
 		$this->db->where(array("parent_id"=>0));
 		$this->db->order_by("id","DESC");
 
@@ -51,9 +46,10 @@ class Category_model extends CI_Model
 		
 		return $this->db->get("category")->result_array();
 	}
-	public function count_category($category_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function count_category($category_name = "")
 	{
-		$this->make_category_query($category_id,$from_date,$to_date);
+		$this->make_category_query($category_name);
+		$this->db->where(array("parent_id"=>0));
 		$this->db->order_by("id","DESC");
 		return $this->db->get("category")->num_rows();
 	}

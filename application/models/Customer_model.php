@@ -31,19 +31,14 @@ class Customer_model extends CI_Model
 	{
 		return $this->db->get_where("customer_partner",array("id"=>$customer_id,'user_type'=>'customer'))->row_array();
 	}
-	private function make_customer_query($customer_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	private function make_customer_query($customer_name = FALSE)
 	{
-		if($customer_id)
-			$this->db->where("id",$customer_id);
-
-		if($from_date)
-			$this->db->where("DATE(`date_time`) >=",date("Y-m-d",strtotime($from_date)));
-		if($to_date)
-			$this->db->where("DATE(`date_time`) <=",date("Y-m-d",strtotime($to_date)));
+		if($customer_name)
+			$this->db->like("name",$customer_name);
 	}
-	public function list_customer($limit = 0,$start = 0,$customer_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function list_customer($limit = 0,$start = 0,$customer_name = FALSE)
 	{
-		$this->make_customer_query($customer_id,$from_date,$to_date);
+		$this->make_customer_query($customer_name);
 		$this->db->where('user_type','customer');
 		$this->db->order_by("id","DESC");
 
@@ -52,9 +47,10 @@ class Customer_model extends CI_Model
 		
 		return $this->db->get("customer_partner")->result_array();
 	}
-	public function count_customer($customer_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function count_customer($customer_name = FALSE)
 	{
-		$this->make_customer_query($customer_id,$from_date,$to_date);
+		$this->make_customer_query($customer_name);
+		$this->db->where('user_type','customer');
 		$this->db->order_by("id","DESC");
 		return $this->db->get("customer_partner")->num_rows();
 	}

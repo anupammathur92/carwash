@@ -3,11 +3,19 @@ class Brand extends CI_Controller
 {
 	public function index()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$data["main_content"] = "Brand/add_brand";
 		$this->load->view("Admin/template",$data);
 	}
 	public function add_brand()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($this->input->post())
 		{
 			$this->load->model("Brand_model");
@@ -41,6 +49,10 @@ class Brand extends CI_Controller
 	}
 	public function list_brand()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
         $start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $limit = 10;
 
@@ -68,6 +80,10 @@ class Brand extends CI_Controller
 	}
 	public function edit_brand($brand_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($brand_id)
 		{
 			$this->load->model("Brand_model");
@@ -82,6 +98,10 @@ class Brand extends CI_Controller
 	}
 	public function update_brand()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($this->input->post())
 		{
 			$this->load->model("Brand_model");
@@ -95,44 +115,16 @@ class Brand extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function show_bill_details()
+	public function delete_brand($brand_id = FALSE)
 	{
-		if($this->input->is_ajax_request())
-		{
-			$bill_id = $this->input->post("bill_id");
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-
-			$this->load->view("Billing/ajax_bill_details",$data);
-		}
-		else
+		if(!$this->session->userdata("logged_in"))
 		{
 			redirect(base_url());
 		}
-	}
-	public function delete_brand($brand_id = FALSE)
-	{
 		if($brand_id)
 		{
 			$this->load->model("Brand_model");
 			$this->Brand_model->delete_brand($brand_id);
-		}
-		else
-		{
-			redirect(base_url());
-		}
-	}
-	public function get_bill($bill_id = FALSE)
-	{
-		if($bill_id)
-		{
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-			$this->load->view("Billing/view_bill",$data);
 		}
 		else
 		{

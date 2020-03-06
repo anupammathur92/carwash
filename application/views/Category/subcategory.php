@@ -44,7 +44,7 @@
 							<h1>Sub Category List</h1>
 						</div>
 <?php
-$client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
+$subcategory_name = $this->input->get("subcategory_name") ? $this->input->get("subcategory_name") : "";
 ?>
 						<div class="row">
 							<div class="col-xs-12">
@@ -52,41 +52,24 @@ $client_name = $this->input->get("client_name") ? $this->input->get("client_name
 									<div class="col-xs-12">
 										<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 											<div class="row">
-												<form method="GET" action="<?php echo base_url();?>Category/list_category">
-													<div class="col-xs-1">
-														<label>Category </label>
+												<form method="GET" action="<?php echo base_url();?>Category/subcategory/<?php echo $parent_category_data["id"]; ?>">
+													<div class="col-xs-6">
+														<div id="dynamic-table_filter" class="">
+															<label>Subcatgory Name:<input type="text" name="subcategory_name" class="form-control input-sm" value="<?php echo $subcategory_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+														</div>
 													</div>
-													<div class="col-md-6">
-														<select style="width:100%;" name="client_name" aria-controls="dynamic-table" class="form-control allClientList">
-															<option value=""></option>
-															<?php
-																if(!empty($client_name))
-																{
-																	?>
-																		<option value="<?php echo $list_client[0]["id"]; ?>" selected><?php echo $list_client[0]["client_name"]; ?></option>
-																	<?php
-																}
-															?>
-														</select>
-													</div>
-													<!-- <div class="col-xs-3">
-														<label>From :<input type="search" name="from_date" id="from_date" class="form-control input-sm" value="<?php echo $from_date; ?>" autocomplete="off" aria-controls="dynamic-table">
-														</label>
-													</div>
-													<div class="col-xs-3">
-														<label>To :<input type="search" name="to_date" id="to_date" class="form-control input-sm" value="<?php echo $to_date; ?>" autocomplete="off" aria-controls="dynamic-table">
-														</label>
-													</div> -->
-													<div class="col-xs-3">
-														<input type="submit" class="btn btn-primary form-control input-sm" placeholder="" aria-controls="dynamic-table" value="Search">
-														<a href="<?php echo base_url();?>Servicecategory/list_category" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
+													<div class="col-xs-6">
+														<div id="dynamic-table_filter" class="dataTables_filter">
+															<input type="submit" class="btn btn-primary form-control input-sm" placeholder="" aria-controls="dynamic-table" value="Search">
+															<a href="<?php echo base_url();?>Category/subcategory/<?php echo $parent_category_data["id"]; ?>" class="btn btn-default form-control input-sm" placeholder="" aria-controls="dynamic-table">Reset</a>
+														</div>
 													</div>
 												</form>
 											</div>
 											<table id="dynamic-table" class="table table-striped table-bordered table-hover dataTable no-footer" role="grid" aria-describedby="dynamic-table_info">
 												<thead>
 													<tr>
-														<th>Category Name</th>
+														<th>Subcategory Name</th>
 														<th>Action</th>
 													</tr>
 												</thead>

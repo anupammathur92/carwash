@@ -30,19 +30,14 @@ class Partner_model extends CI_Model
 	{
 		return $this->db->get_where("customer_partner",array("id"=>$partner_id,'user_type'=>'partner'))->row_array();
 	}
-	private function make_partner_query($partner_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	private function make_partner_query($partner_name = "")
 	{
-		if($partner_id)
-			$this->db->where("id",$partner_id);
-
-		if($from_date)
-			$this->db->where("DATE(`date_time`) >=",date("Y-m-d",strtotime($from_date)));
-		if($to_date)
-			$this->db->where("DATE(`date_time`) <=",date("Y-m-d",strtotime($to_date)));
+		if($partner_name!="")
+			$this->db->where("id",$partner_name);
 	}
-	public function list_partner($limit = 0,$start = 0,$partner_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function list_partner($limit = 0,$start = 0,$partner_name = "")
 	{
-		$this->make_partner_query($partner_id,$from_date,$to_date);
+		$this->make_partner_query($partner_name);
 		$this->db->where('user_type','partner');
 		$this->db->order_by("id","DESC");
 
@@ -51,9 +46,10 @@ class Partner_model extends CI_Model
 		
 		return $this->db->get("customer_partner")->result_array();
 	}
-	public function count_partner($partner_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function count_partner($partner_name = FALSE)
 	{
-		$this->make_partner_query($partner_id,$from_date,$to_date);
+		$this->make_partner_query($partner_name);
+		$this->db->where('user_type','partner');
 		$this->db->order_by("id","DESC");
 		return $this->db->get("customer_partner")->num_rows();
 	}

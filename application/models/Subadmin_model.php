@@ -33,19 +33,14 @@ class Subadmin_model extends CI_Model
 	{
 		return $this->db->get_where("admins",array("id"=>$subadmin_id,'user_type'=>'subadmin'))->row_array();
 	}
-	private function make_subadmin_query($subadmin_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	private function make_subadmin_query($subadmin_name = "")
 	{
-		if($subadmin_id)
-			$this->db->where("id",$subadmin_id);
-
-		if($from_date)
-			$this->db->where("DATE(`date_time`) >=",date("Y-m-d",strtotime($from_date)));
-		if($to_date)
-			$this->db->where("DATE(`date_time`) <=",date("Y-m-d",strtotime($to_date)));
+		if($subadmin_name!="")
+			$this->db->like("name",$subadmin_name);
 	}
-	public function list_subadmin($limit = 0,$start = 0,$subadmin_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function list_subadmin($limit = 0,$start = 0,$subadmin_name = "")
 	{
-		$this->make_subadmin_query($subadmin_id,$from_date,$to_date);
+		$this->make_subadmin_query($subadmin_name);
 		$this->db->where('user_type','subadmin');
 		$this->db->order_by("id","DESC");
 
@@ -54,9 +49,10 @@ class Subadmin_model extends CI_Model
 		
 		return $this->db->get("admins")->result_array();
 	}
-	public function count_subadmin($subadmin_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function count_subadmin($subadmin_name = "")
 	{
-		$this->make_subadmin_query($subadmin_id,$from_date,$to_date);
+		$this->make_subadmin_query($subadmin_name);
+		$this->db->where('user_type','subadmin');
 		$this->db->order_by("id","DESC");
 		return $this->db->get("admins")->num_rows();
 	}

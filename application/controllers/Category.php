@@ -3,12 +3,20 @@ class Category extends CI_Controller
 {
 	public function index()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$this->load->model("Category_model");
 		$data["main_content"] = "Category/add_category";
 		$this->load->view("Admin/template",$data);
 	}
 	public function add_category()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		//echo "<pre>"; print_r($this->input->post()); echo "</pre>"; die();
 		$this->load->model("Category_model");
 		$this->Category_model->add_category();
@@ -37,23 +45,27 @@ class Category extends CI_Controller
 	}
 	public function list_category()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$this->load->library("pagination");
 		$this->load->model("Category_model");
 
         $start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $limit = 10;
 
-		$client_name = $this->input->get("client_name") ? $this->input->get("client_name") : "";
+		$category_name = $this->input->get("category_name") ? $this->input->get("category_name") : "";
 
-		$data["list_category"] = $this->Category_model->list_category($limit,$start,$client_name);
+		$data["list_category"] = $this->Category_model->list_category($limit,$start,$category_name);
 
 		$config["base_url"] = base_url()."Category/list_category";
-        $config["total_rows"] = $this->Category_model->count_category($client_name);
+        $config["total_rows"] = $this->Category_model->count_category($category_name);
         $config["per_page"] = $limit;
 		
-		$config["first_url"] = base_url()."Category/list_category?client_name=" . $client_name;
+		$config["first_url"] = base_url()."Category/list_category?category_name=" . $category_name;
 
-		$config["suffix"] = "?client_name=" . $client_name;
+		$config["suffix"] = "?category_name=" . $category_name;
 
 		$data["page_url"] = $start.$config["suffix"];
 		$config["uri_segment"] = 3;
@@ -65,6 +77,10 @@ class Category extends CI_Controller
 	}
 	public function edit_category($category_id=FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($category_id)
 		{
 			$this->load->model("Category_model");
@@ -79,6 +95,10 @@ class Category extends CI_Controller
 	}
 	public function update_category()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		//echo "<pre>"; print_r($this->input->post()); echo "</pre>"; die();
 
 		$this->load->model("Category_model");
@@ -89,6 +109,10 @@ class Category extends CI_Controller
 	}
 	public function delete_category($category_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($category_id)
 		{
 			$this->load->model("Category_model");
@@ -101,6 +125,10 @@ class Category extends CI_Controller
 	}
 	public function subcategory($category_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($category_id)
 		{
 			$this->load->model("Category_model");
@@ -116,6 +144,10 @@ class Category extends CI_Controller
 	}
 	public function add_subcategory()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$this->load->model("Category_model");
 		$this->Category_model->add_subcategory();
 
@@ -127,6 +159,10 @@ class Category extends CI_Controller
 	}
 	public function delete_subcategory($subcategory_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($subcategory_id)
 		{
 			$this->load->model("Category_model");
@@ -139,6 +175,10 @@ class Category extends CI_Controller
 	}
 	public function edit_subcategory($subcategory_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($subcategory_id)
 		{
 			$this->load->model("Category_model");
@@ -153,6 +193,10 @@ class Category extends CI_Controller
 	}
 	public function update_subcategory()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$this->load->model("Category_model");
 		$data["category_data"] = $this->Category_model->update_subcategory();
 

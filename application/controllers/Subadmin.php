@@ -3,23 +3,28 @@ class Subadmin extends CI_Controller
 {
 	public function index()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$data["main_content"] = "Subadmin/add_subadmin";
 		$this->load->view("Admin/template",$data);
 	}
 	public function add_subadmin()
 	{
-		if($this->input->post())
-		{
-			$this->load->model("Subadmin_model");
-			$this->Subadmin_model->add_subadmin();
-
-			$data["main_content"] = "Subadmin/add_subadmin";
-			$this->load->view("Admin/template",$data);
-		}
-		else
+		if(!$this->session->userdata("logged_in"))
 		{
 			redirect(base_url());
 		}
+		if(!$this->input->post())
+		{
+			redirect(base_url());
+		}
+		$this->load->model("Subadmin_model");
+		$this->Subadmin_model->add_subadmin();
+
+		$data["main_content"] = "Subadmin/add_subadmin";
+		$this->load->view("Admin/template",$data);
 	}
 	public function unique_mobile_number($mobile_number)
 	{
@@ -41,13 +46,17 @@ class Subadmin extends CI_Controller
 	}
 	public function list_subadmin()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		$start = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $limit = 10;
 
         $this->load->library("pagination");
 		$this->load->model("Subadmin_model");
 		$subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmin_name") : "";
-		$data["list_subadmins"] = $this->Subadmin_model->list_subadmin($limit);
+		$data["list_subadmins"] = $this->Subadmin_model->list_subadmin($limit,$start,$subadmin_name);
 
 		$config["base_url"] = base_url()."Subadmin/list_subadmin";
         $config["total_rows"] = $this->Subadmin_model->count_subadmin($subadmin_name);
@@ -68,6 +77,10 @@ class Subadmin extends CI_Controller
 	}
 	public function edit_subadmin($subadmin_id = FALSE)
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($subadmin_id)
 		{
 			$this->load->model("Subadmin_model");
@@ -82,6 +95,10 @@ class Subadmin extends CI_Controller
 	}
 	public function update_subadmin()
 	{
+		if(!$this->session->userdata("logged_in"))
+		{
+			redirect(base_url());
+		}
 		if($this->input->post())
 		{
 			$this->load->model("Subadmin_model");
@@ -95,25 +112,12 @@ class Subadmin extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function show_bill_details()
+	public function delete_subadmin($subadmin_id = FALSE)
 	{
-		if($this->input->is_ajax_request())
-		{
-			$bill_id = $this->input->post("bill_id");
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-
-			$this->load->view("Billing/ajax_bill_details",$data);
-		}
-		else
+		if(!$this->session->userdata("logged_in"))
 		{
 			redirect(base_url());
 		}
-	}
-	public function delete_subadmin($subadmin_id = FALSE)
-	{
 		if($subadmin_id)
 		{
 			$this->load->model("Subadmin_model");
@@ -124,15 +128,24 @@ class Subadmin extends CI_Controller
 			redirect(base_url());
 		}
 	}
-	public function get_bill($bill_id = FALSE)
+	public function get_all_subadmins()
 	{
-		if($bill_id)
+		if($this->input->is_ajax_request())
 		{
-			$this->load->model("Billing_model");
-			$this->load->model("Client_model");
-			$data["bill_data"] = $this->Billing_model->get_bill_by_id($bill_id);
-			$data["client_data"] = $this->Client_model->get_client_by_id($data["bill_data"]["client_id"]);
-			$this->load->view("Billing/view_bill",$data);
+			$search_str = trim($this->input->get("q"));
+
+			$arr["results"] = null;
+
+			$this->db->like("name",$search_str);
+			$this->db->where(array("user_type"=>"subadmin"));
+			$query = $this->db->get("admins");
+			foreach($query->result_array() as $data)
+			{
+				$arr["results"][] = array("id"=>$data["id"],
+										  "text"=>$data["name"]
+										  );
+			}
+			echo json_encode($arr);
 		}
 		else
 		{

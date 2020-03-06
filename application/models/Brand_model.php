@@ -26,19 +26,14 @@ class Brand_model extends CI_Model
 	{
 		return $this->db->get_where("brand",array("id"=>$brand_id))->row_array();
 	}
-	private function make_brand_query($brand_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	private function make_brand_query($brand_name = "")
 	{
-		if($brand_id)
-			$this->db->where("id",$brand_id);
-
-		if($from_date)
-			$this->db->where("DATE(`date_time`) >=",date("Y-m-d",strtotime($from_date)));
-		if($to_date)
-			$this->db->where("DATE(`date_time`) <=",date("Y-m-d",strtotime($to_date)));
+		if($brand_name!="")
+			$this->db->where("name",$brand_name);
 	}
-	public function list_brand($limit = 0,$start = 0,$brand_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function list_brand($limit = 0,$start = 0,$brand_name = "")
 	{
-		$this->make_brand_query($brand_id,$from_date,$to_date);
+		$this->make_brand_query($brand_name);
 		$this->db->order_by("id","DESC");
 
 		if($limit!=-1 AND $limit!=-1)
@@ -46,9 +41,9 @@ class Brand_model extends CI_Model
 		
 		return $this->db->get("brand")->result_array();
 	}
-	public function count_brand($brand_id = FALSE,$from_date = FALSE,$to_date = FALSE)
+	public function count_brand($brand_name = "")
 	{
-		$this->make_brand_query($brand_id,$from_date,$to_date);
+		$this->make_brand_query($brand_name);
 		$this->db->order_by("id","DESC");
 		return $this->db->get("brand")->num_rows();
 	}

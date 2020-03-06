@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
-        <title>Water Plant</title>
+        <title>Car Wash</title>
         <meta name="description" content="overview &amp; stats" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <link rel="stylesheet" href="<?php echo base_url(); ?>assests/css/bootstrap.min.css" type="text/css" />
@@ -139,7 +139,7 @@
                     <a href="<?php echo base_url();?>Admin" class="navbar-brand">
                         <small>
                             <i class="fa fa-leaf"></i>
-                            Water Plant
+                            Car Wash
                         </small>
                     </a>
                 </div>
@@ -148,7 +148,7 @@
                         <li class="light-blue dropdown-modal">
                             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                                 <span class="user-info">
-                                    <small>Welcome, Uvip</small>
+                                    <small>Welcome, <?php echo $this->session->userdata["logged_in"]["username"]; ?></small>
                                 </span>
                                 <i class="ace-icon fa fa-caret-down"></i>
                             </a>

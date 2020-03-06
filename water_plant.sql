@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2020 at 07:11 PM
+-- Generation Time: Mar 06, 2020 at 07:29 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -46,8 +46,9 @@ CREATE TABLE IF NOT EXISTS `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `mobile_number`, `password`, `is_active`, `allow_customer`, `allow_partner`, `allow_brand`, `allow_category`, `user_type`) VALUES
-(1, 'asdfg', 'a@gmail.com', '1234567890', '', 1, 0, 1, 1, 1, 'subadmin'),
-(2, 'a', 'a@gmail.com', 'a', '123456', 0, 0, 0, 0, 0, 'subadmin');
+(1, 'asdfg', 'a@gmail.com', '1234567890', 'e10adc3949ba59abbe56e057f20f883e', 1, 0, 1, 1, 1, 'subadmin'),
+(2, 'a', 'a@gmail.com', 'a', 'e10adc3949ba59abbe56e057f20f883e', 0, 0, 0, 0, 0, 'subadmin'),
+(3, 'adminone', 'a@gmail.com', '9876543210', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, 1, 1, 1, 'admin');
 
 -- --------------------------------------------------------
 

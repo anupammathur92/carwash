@@ -2,8 +2,8 @@
     <div class="footer-inner">
       <div class="footer-content">
         <span class="bigger-120">
-             <span class="blue bolder">Water Plant</span>
-             2017-2018
+             <span class="blue bolder">Car Wash</span>
+             2020-2021
         </span>
        </div>
     </div>
@@ -49,9 +49,9 @@
 <script type="text/javascript">
 	$(".multiselectbox").select2({});
 	$(".selectMaterialName").select2({});
-	$(".allClientList").select2({
+	$(".allSubadminList").select2({
 	  ajax: {
-	      url: "<?php echo base_url();?>Client/get_all_clients",
+	      url: "<?php echo base_url();?>Subadmin/get_all_subadmins",
 	      dataType: 'json',
 	      delay: 250,
 	      data: function (params) {
@@ -66,7 +66,7 @@
 	    }
 	  },
 	  minimumInputLength: 1,
-	  placeholder : "Select Client"
+	  placeholder : "Select Subadmin"
 	});
 </script>
  <script type="text/javascript">
