@@ -27,7 +27,7 @@ $subadmin_name = $this->input->get("subadmin_name") ? $this->input->get("subadmi
 													<form method="GET" action="<?php echo base_url();?>Subadmin/list_subadmin">
 														<div class="col-xs-6">
 															<div id="dynamic-table_filter" class="">
-																<label>Subadmin Name:<input type="text" name="subadmin_name" class="form-control input-sm" value="<?php echo $subadmin_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+																<label>Subadmin Name:<input type="text" name="subadmin_name" class="form-control input-sm" value="<?php echo $subadmin_name; ?>" placeholder="" autocomplete="off" aria-controls="dynamic-table"></label>
 															</div>
 														</div>
 														<div class="col-xs-6">

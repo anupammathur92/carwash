@@ -27,7 +27,7 @@ $category_name = $this->input->get("category_name") ? $this->input->get("categor
 													<form method="GET" action="<?php echo base_url();?>Category/list_category">
 														<div class="col-xs-6">
 															<div id="dynamic-table_filter" class="">
-																<label>Category Name:<input type="text" name="category_name" class="form-control input-sm" value="<?php echo $category_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+																<label>Category Name:<input type="text" name="category_name" class="form-control input-sm" value="<?php echo $category_name; ?>" placeholder="" autocomplete="off" aria-controls="dynamic-table"></label>
 															</div>
 														</div>
 														<div class="col-xs-6">

@@ -26,13 +26,13 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Brand Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="name" placeholder="Brand Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="name" placeholder="Brand Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Model Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="model" placeholder="Model Name" value="<?php echo set_value('model'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="model" placeholder="Model Name" value="<?php echo set_value('model'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="clearfix form-actions">

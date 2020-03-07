@@ -23,13 +23,13 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="name" id="form-field-1" value="<?php if(isset($brand_data)){ echo $brand_data['name']; }?>" placeholder="Name" class="col-xs-10 col-sm-5" />
+									<input type="text" name="name" id="form-field-1" value="<?php if(isset($brand_data)){ echo $brand_data['name']; }?>" placeholder="Name" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Model Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="model" id="form-field-2" placeholder="Model Name" value="<?php if(isset($brand_data)){ echo $brand_data['model']; }?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="model" id="form-field-2" placeholder="Model Name" value="<?php if(isset($brand_data)){ echo $brand_data['model']; }?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="clearfix form-actions">

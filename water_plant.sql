@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2020 at 07:29 PM
+-- Generation Time: Mar 07, 2020 at 08:46 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -122,17 +122,20 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(50) NOT NULL,
   `parent_id` int(11) NOT NULL DEFAULT '0',
+  `min_price` varchar(50) NOT NULL,
+  `max_price` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `category_name`, `parent_id`) VALUES
-(1, 'a', 0),
-(2, 'b', 0),
-(4, 'f', 2);
+INSERT INTO `category` (`id`, `category_name`, `parent_id`, `min_price`, `max_price`) VALUES
+(1, 'a', 0, '', ''),
+(2, 'b', 0, '', ''),
+(4, 'f', 2, '2000', '4000'),
+(5, 'w', 2, '1', '2');
 
 -- --------------------------------------------------------
 

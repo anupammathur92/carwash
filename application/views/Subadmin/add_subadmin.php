@@ -26,31 +26,31 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Subadmin Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="name" placeholder="Subadmin Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="name" placeholder="Subadmin Name" value="<?php echo set_value('name'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Email </label>
 								<div class="col-sm-9">
-									<input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Mobile Number </label>
 								<div class="col-sm-9">
-									<input type="text" name="mobile_number" placeholder="Mobile Number" value="<?php echo set_value('mobile_number'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="mobile_number" placeholder="Mobile Number" value="<?php echo set_value('mobile_number'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Password </label>
 								<div class="col-sm-9">
-									<input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Confirm Password </label>
 								<div class="col-sm-9">
-									<input type="password" name="confirm_password" placeholder="Confirm Password" value="<?php echo set_value('password'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="password" name="confirm_password" placeholder="Confirm Password" value="<?php echo set_value('password'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">

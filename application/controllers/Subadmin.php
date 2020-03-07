@@ -26,6 +26,29 @@ class Subadmin extends CI_Controller
 		$data["main_content"] = "Subadmin/add_subadmin";
 		$this->load->view("Admin/template",$data);
 	}
+	public function unique_email($email)
+	{
+		$this->db->where("email",$email);
+
+		if($this->input->post("update_id"))
+			$this->db->where("id !=",$this->input->post("update_id"));
+
+		$admin_query = $this->db->get("admins");
+
+
+		$customer_partner = $this->db->get_where("customer_partner",array("email"=>$email));
+
+
+		if($admin_query->num_rows()>0 || $customer_partner->num_rows()>0)
+		{
+			$this->form_validation->set_message("unique_email","The Mobile Number You Entered , Already Exists. Please Enter A Unique Email");
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 	public function unique_mobile_number($mobile_number)
 	{
 		$this->db->where("mobile_number",$mobile_number);
@@ -33,8 +56,11 @@ class Subadmin extends CI_Controller
 		if($this->input->post("update_id"))
 			$this->db->where("id !=",$this->input->post("update_id"));
 
-		$query = $this->db->get("admins");
-		if($query->num_rows()>0)
+		$admin_query = $this->db->get("admins");
+
+		$customer_partner = $this->db->get_where("customer_partner",array("mobile_number"=>$mobile_number));
+
+		if($admin_query->num_rows()>0 || $customer_partner->num_rows()>0)
 		{
 			$this->form_validation->set_message("unique_mobile_number","The Mobile Number You Entered , Already Exists. Please Enter A Unique Mobile Number");
 			return FALSE;
@@ -122,30 +148,6 @@ class Subadmin extends CI_Controller
 		{
 			$this->load->model("Subadmin_model");
 			$this->Subadmin_model->delete_subadmin($subadmin_id);
-		}
-		else
-		{
-			redirect(base_url());
-		}
-	}
-	public function get_all_subadmins()
-	{
-		if($this->input->is_ajax_request())
-		{
-			$search_str = trim($this->input->get("q"));
-
-			$arr["results"] = null;
-
-			$this->db->like("name",$search_str);
-			$this->db->where(array("user_type"=>"subadmin"));
-			$query = $this->db->get("admins");
-			foreach($query->result_array() as $data)
-			{
-				$arr["results"][] = array("id"=>$data["id"],
-										  "text"=>$data["name"]
-										  );
-			}
-			echo json_encode($arr);
 		}
 		else
 		{

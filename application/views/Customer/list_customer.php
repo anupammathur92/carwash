@@ -27,7 +27,7 @@ $customer_name = $this->input->get("customer_name") ? $this->input->get("custome
 													<form method="GET" action="<?php echo base_url();?>Customer/list_customer">
 														<div class="col-xs-6">
 															<div id="dynamic-table_filter" class="">
-																<label>Customer Name:<input type="text" name="customer_name" class="form-control input-sm" value="<?php echo $customer_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+																<label>Customer Name:<input type="text" name="customer_name" class="form-control input-sm" value="<?php echo $customer_name; ?>" placeholder="" autocomplete="off" aria-controls="dynamic-table"></label>
 															</div>
 														</div>
 														<div class="col-xs-6">

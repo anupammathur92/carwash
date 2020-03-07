@@ -26,7 +26,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Category Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="category_name" placeholder="Category Name" value="<?php echo set_value('category_name'); ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="category_name" placeholder="Category Name" value="<?php echo set_value('category_name'); ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="clearfix form-actions">

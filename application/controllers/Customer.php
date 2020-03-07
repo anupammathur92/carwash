@@ -29,6 +29,29 @@ class Customer extends CI_Controller
 			redirect(base_url());
 		}
 	}
+	public function unique_email($email)
+	{
+		$this->db->where("email",$email);
+
+		if($this->input->post("update_id"))
+			$this->db->where("id !=",$this->input->post("update_id"));
+
+		$customer_partner = $this->db->get("customer_partner");
+
+
+		$admin_query = $this->db->get_where("admins",array("email"=>$email));
+
+
+		if($admin_query->num_rows()>0 || $customer_partner->num_rows()>0)
+		{
+			$this->form_validation->set_message("unique_email","The Mobile Number You Entered , Already Exists. Please Enter A Unique Email");
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 	public function unique_mobile_number($mobile_number)
 	{
 		$this->db->where("mobile_number",$mobile_number);
@@ -36,8 +59,11 @@ class Customer extends CI_Controller
 		if($this->input->post("update_id"))
 			$this->db->where("id !=",$this->input->post("update_id"));
 
-		$query = $this->db->get("customer_partner");
-		if($query->num_rows()>0)
+		$customer_partner = $this->db->get("customer_partner");
+
+		$admin_query = $this->db->get_where("admins",array("mobile_number"=>$mobile_number));
+
+		if($customer_partner->num_rows()>0 || $admin_query->num_rows()>0)
 		{
 			$this->form_validation->set_message("unique_mobile_number","The Mobile Number You Entered , Already Exists. Please Enter A Unique Mobile Number");
 			return FALSE;

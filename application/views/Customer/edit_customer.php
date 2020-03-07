@@ -23,31 +23,31 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="name" id="form-field-1" value="<?php if(isset($customer_data)){ echo $customer_data['name']; }?>" placeholder="Name" class="col-xs-10 col-sm-5" />
+									<input type="text" name="name" id="form-field-1" value="<?php if(isset($customer_data)){ echo $customer_data['name']; }?>" placeholder="Name" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Email </label>
 								<div class="col-sm-9">
-									<textarea style="resize:none;" class="col-xs-10 col-sm-5" id="form-field-8" name="email" placeholder="Email"><?php if(isset($customer_data)){ echo $customer_data['email']; }?></textarea>
+									<input type="text" name="email" placeholder="Email" value="<?php if(isset($customer_data)){ echo $customer_data['email']; }?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mobile Number </label>
 								<div class="col-sm-9">
-									<input type="text" name="mobile_number" id="form-field-1" placeholder="Mobile Name" value="<?php if(isset($customer_data)){ echo $customer_data['mobile_number']; }?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="mobile_number" id="form-field-1" placeholder="Mobile Name" value="<?php if(isset($customer_data)){ echo $customer_data['mobile_number']; }?>" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Password </label>
 								<div class="col-sm-9">
-									<input type="password" name="password" placeholder="Password" class="col-xs-10 col-sm-5" />
+									<input type="password" name="password" placeholder="Password" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Confirm Password </label>
 								<div class="col-sm-9">
-									<input type="password" name="confirm_password" placeholder="Confirm Password" class="col-xs-10 col-sm-5" />
+									<input type="password" name="confirm_password" placeholder="Confirm Password" class="col-xs-10 col-sm-5" autocomplete="off" />
 								</div>
 							</div>
 							<div class="form-group">

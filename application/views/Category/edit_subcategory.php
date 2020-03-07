@@ -28,7 +28,19 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-padding-right"> Sub Category Name </label>
 								<div class="col-sm-9">
-									<input type="text" name="category_name" placeholder="Sub Category Name" value="<?php if(isset($subcategory_data)){ echo $subcategory_data["category_name"]; } ?>" class="col-xs-10 col-sm-5" />
+									<input type="text" name="category_name" placeholder="Sub Category Name" value="<?php if(isset($subcategory_data)){ echo $subcategory_data["category_name"]; } ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right">Min. Price </label>
+								<div class="col-sm-9">
+									<input type="text" name="min_price" placeholder="Min. Price" value="<?php if(isset($subcategory_data)){ echo $subcategory_data["min_price"]; } ?>" class="col-xs-10 col-sm-5" autocomplete="off" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right">Max. Price </label>
+								<div class="col-sm-9">
+									<input type="text" name="max_price" placeholder="Max. Price" value="<?php if(isset($subcategory_data)){ echo $subcategory_data["max_price"]; } ?>" class="col-xs-10 col-sm-5" />
 								</div>
 							</div>
 							<div class="clearfix form-actions">

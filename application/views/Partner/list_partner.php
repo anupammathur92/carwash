@@ -27,7 +27,7 @@ $partner_name = $this->input->get("partner_name") ? $this->input->get("partner_n
 													<form method="GET" action="<?php echo base_url();?>Partner/list_partner">
 														<div class="col-xs-6">
 															<div id="dynamic-table_filter" class="">
-																<label>Partner Name:<input type="text" name="partner_name" class="form-control input-sm" value="<?php echo $partner_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+																<label>Partner Name:<input type="text" name="partner_name" class="form-control input-sm" value="<?php echo $partner_name; ?>" placeholder="" autocomplete="off" aria-controls="dynamic-table"></label>
 															</div>
 														</div>
 														<div class="col-xs-6">

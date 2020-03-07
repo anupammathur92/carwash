@@ -94,6 +94,8 @@ class Category_model extends CI_Model
 	public function add_subcategory()
 	{
 		$this->form_validation->set_rules("category_name","Sub Category Name","required|trim|callback_unique_category_name");
+		$this->form_validation->set_rules("min_price","Min. Price","required|trim");
+		$this->form_validation->set_rules("max_price","Max. Price","required|trim");
 		$this->form_validation->set_rules("model","trim");
 
 		if($this->form_validation->run())
@@ -117,6 +119,8 @@ class Category_model extends CI_Model
 	public function update_subcategory()
 	{
 		$this->form_validation->set_rules("category_name","Sub Category Name","required|trim|callback_unique_category_name");
+		$this->form_validation->set_rules("min_price","Min. Price","required|trim");
+		$this->form_validation->set_rules("max_price","Max. Price","required|trim");
 		$this->form_validation->set_rules("model","trim");
 
 		if($this->form_validation->run())

@@ -27,7 +27,7 @@ $brand_name = $this->input->get("brand_name") ? $this->input->get("brand_name") 
 													<form method="GET" action="<?php echo base_url();?>Brand/list_brand">
 														<div class="col-xs-6">
 															<div id="dynamic-table_filter" class="">
-																<label>Brand Name:<input type="text" name="brand_name" class="form-control input-sm" value="<?php echo $brand_name; ?>" placeholder="" aria-controls="dynamic-table"></label>
+																<label>Brand Name:<input type="text" name="brand_name" class="form-control input-sm" value="<?php echo $brand_name; ?>" placeholder="" autocomplete="off" aria-controls="dynamic-table"></label>
 															</div>
 														</div>
 														<div class="col-xs-6">
