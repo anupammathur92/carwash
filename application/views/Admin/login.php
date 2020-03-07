@@ -53,14 +53,14 @@
                                                 <fieldset>
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="text" name="loginusername" class="form-control" value="<?php echo set_value('loginusername');?>" placeholder="Mobile No." />
+                                                            <input type="text" name="loginusername" class="form-control" value="<?php echo set_value('loginusername');?>" placeholder="Mobile No." autocomplete="off" />
                                                             <i class="ace-icon fa fa-user"></i>
                                                         </span>
                                                     </label>
 
                                                     <label class="block clearfix">
                                                         <span class="block input-icon input-icon-right">
-                                                            <input type="password" name="loginpassword" class="form-control" placeholder="Password" />
+                                                            <input type="password" name="loginpassword" class="form-control" placeholder="Password"  autocomplete="off"/>
                                                             <i class="ace-icon fa fa-lock"></i>
                                                         </span>
                                                     </label>
